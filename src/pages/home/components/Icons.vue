@@ -92,7 +92,8 @@
 
 <style lang="stylus" scoped>
     @import "~@/assets/style/varibles.styl"
-    @import "~@/assets/style/mixmins.styl"
+    @import "~@/assets/style/mixins.styl"
+
     .icons >>> .swiper-container
         height 0
         padding-bottom 50%
