@@ -8,8 +8,9 @@
                         <p class="icon-desc">{{item.desc}}</p>
                     </div>
                 </div>
-            </swiper-slide>
 
+            </swiper-slide>
+            <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
     </div>
 </template>
@@ -23,7 +24,9 @@
         data() {
             return {
                 swiperOption: {
-                    autoplay: false
+                    autoplay: false,
+                    pagination: '.swiper-pagination',
+                    // loop: true
                 },
             }
         },
@@ -46,6 +49,9 @@
 <style lang="stylus" scoped>
     @import "~@/assets/style/varibles.styl"
     @import "~@/assets/style/mixins.styl"
+
+    .icons >>> .swiper-pagination-bullet-active
+        background #00bcd4
 
     .icons >>> .swiper-container
         height 0

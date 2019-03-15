@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="recommend-title">热销</div>
+        <div class="recommend-title">热门榜单</div>
         <ul v-for="item of reommend" :key="item.id">
             <li class="item border-bottom">
 
