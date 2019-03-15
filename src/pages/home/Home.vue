@@ -29,12 +29,10 @@
         data() {
             return {
                 city: '',
-                swiperList:[],
-                recommendList:[],
-                iconList:[],
-                weekendList:[]
-
-
+                swiperList: [],
+                recommendList: [],
+                iconList: [],
+                weekendList: []
             }
         },
         methods: {
@@ -45,13 +43,12 @@
             getHomeInfoSuccess(res) {
                 res = res.data;
                 if (res.ret && res.data) {
-                    const data=res.data;
+                    const data = res.data;
                     // this.city = data.hotCities[0].name;
-                    this.swiperList=data.swiperList;
-                    this.recommendList=data.recommendList;
-                    this.iconList=data.iconList;
-                    this.weekendList=data.weekendList;
-                    console.log(data)
+                    this.swiperList = data.swiperList;
+                    this.recommendList = data.recommendList;
+                    this.iconList = data.iconList;
+                    this.weekendList = data.weekendList;
                 }
             }
         },
