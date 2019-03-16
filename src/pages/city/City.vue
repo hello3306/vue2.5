@@ -2,8 +2,8 @@
     <div>
         <city-header></city-header>
         <city-search></city-search>
-        <city-list :cities="cities" :hotCities="hotCities"></city-list>
-        <city-alphabet :cities="cities"></city-alphabet>
+        <city-list :cities="cities" :hotCities="hotCities" :letter="letter"></city-list>
+        <city-alphabet :cities="cities" @change="handLeLetterChange"></city-alphabet>
     </div>
 </template>
 
@@ -17,10 +17,11 @@
 
     export default {
         name: "City",
-        data () {
-            return{
-                cities:{},
-                hotCities:[]
+        data() {
+            return {
+                cities: {},
+                hotCities: [],
+                letter: ''
             }
         },
         components: {
@@ -29,17 +30,20 @@
             CityHeader,
             CitySearch
         },
-        methods:{
-            getCityInfo (){
+        methods: {
+            getCityInfo() {
                 axios.get('/static/mock/city.json').then(this.handleGetCityInfoSuccess)
             },
-            handleGetCityInfoSuccess (res) {
+            handleGetCityInfoSuccess(res) {
                 res = res.data
                 if (res.ret && res.data) {
                     const data = res.data;
-                    this.cities=data.cities;
-                    this.hotCities=data.hotCities
+                    this.cities = data.cities;
+                    this.hotCities = data.hotCities
                 }
+            },
+            handLeLetterChange(letter) {
+                this.letter = letter
             }
         },
         mounted() {
