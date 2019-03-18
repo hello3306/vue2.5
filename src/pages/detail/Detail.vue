@@ -1,18 +1,55 @@
 <template>
     <div>
-        <banner></banner>
+        <banner :sightName="sightName"
+                :bannerImg="bannerImg"
+                :bannerImgs="gallaryImgs"></banner>
         <detail-header></detail-header>
-        <div class="content"></div>
+        <div class="content">
+            <detail-list :list="list"></detail-list>
+        </div>
+
     </div>
 </template>
 
 <script>
     import Banner from './component/Banner'
     import DetailHeader from "./component/Header";
+    import DetailList from "./component/List";
+    import axios from 'axios'
 
     export default {
         name: "Detail",
-        components: {DetailHeader, Banner},
+        components: {DetailList, DetailHeader, Banner},
+        data() {
+            return {
+                sightName: '',
+                bannerImg: '',
+                gallaryImgs: [],
+                list: []
+            }
+        },
+        methods: {
+            getDetailInfo () {
+                axios.get('/static/mock/detail.json', {
+                    params: {
+                        id: this.$route.params.id
+                    }
+                }).then(this.handleGetDataSucc)
+            },
+            handleGetDataSucc (res) {
+                res = res.data
+                if (res.ret && res.data) {
+                    const data = res.data
+                    this.sightName = data.sightName
+                    this.bannerImg = data.bannerImg
+                    this.gallaryImgs = data.gallaryImgs
+                    this.list = data.categoryList
+                }
+            }
+        },
+        mounted () {
+            this.getDetailInfo()
+        }
     }
 </script>
 

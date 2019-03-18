@@ -2,13 +2,13 @@
     <div>
         <div class="banner" @click="handleBannerClick">
             <img class="banner-img"
-                 src="http://img1.qunarzz.com/sight/p0/1501/b5/b536539824a83cb3.water.jpg_710x420_f9ffc62d.jpg"/>
+                 :src="bannerImg"/>
             <div class="banner-info">
-                <div class="banner-title">故宫(AAAAA景区)</div>
+                <div class="banner-title">{{this.sightName}}</div>
                 <div class="banner-number banner-icon"><span class="iconfont arrow-icon">&#xe7b3;</span> 33</div>
             </div>
         </div>
-        <common-gallary :imgs="imgs" v-show="showGallary" @close="handleGallaryGlose"></common-gallary>
+        <common-gallary :imgs="bannerImgs" v-show="showGallary" @close="handleGallaryGlose"></common-gallary>
     </div>
 </template>
 
@@ -19,6 +19,11 @@
         name: "Banner",
         components: {
             CommonGallary
+        },
+        props: {
+            sightName: String,
+            bannerImg: String,
+            bannerImgs: Array
         },
         data() {
             return {
